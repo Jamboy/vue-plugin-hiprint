@@ -5,13 +5,13 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
-    'vue-plugin-hiprint.js': './src/index.js',
+    'vue-plugin-hiprint-jam.js': './src/index.js',
   },
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
     filename: '[name]',
-    library: 'vue-plugin-hiprint',
+    library: 'vue-plugin-hiprint-jam',
     libraryTarget: "umd",
     // libraryTarget: "commonjs2",
     umdNamedDefine: true
@@ -23,7 +23,7 @@ module.exports = {
     }),
     new CopyPlugin([
       { from: './src/hiprint/css/print-lock.css', to: '' },
-    ]),
+    ]), 
   ],
   externals: {
     jquery: {
@@ -66,7 +66,7 @@ module.exports = {
           }
         }
       })
-    ]
+    ] 
   },
   module: {
     rules: [
