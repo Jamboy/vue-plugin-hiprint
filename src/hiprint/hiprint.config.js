@@ -1936,7 +1936,56 @@
           name: 'zIndex',
           hidden: false
         }]
-      }, {
+      },
+      {
+        name: '边框', options: [
+          {
+            name: 'optionsGroup',
+            hidden: false
+          },
+          {
+            name: 'borderLeft',
+            hidden: false
+          },
+          {
+            name: 'borderTop',
+            hidden: false
+          },
+          {
+            name: 'borderRight',
+            hidden: false
+          },
+          {
+            name: 'borderBottom',
+            hidden: false
+          },
+          {
+            name: 'borderWidth',
+            hidden: false
+          },
+          {
+            name: 'borderColor',
+            hidden: false
+          },
+          {
+            name: 'contentPaddingLeft',
+            hidden: false
+          },
+          {
+            name: 'contentPaddingTop',
+            hidden: false
+          },
+          {
+            name: 'contentPaddingRight',
+            hidden: false
+          },
+          {
+            name: 'contentPaddingBottom',
+            hidden: false
+          },
+        ]
+      },
+      {
         name: '高级',
         options: [{
           name: 'pageBreak',
@@ -2122,7 +2171,62 @@
           name: 'zIndex',
           hidden: false
         }]
-      }, {
+      }, 
+      {
+        name: '边框', options: [
+          {
+            name: 'optionsGroup',
+            hidden: false
+          },
+        
+          {
+            name: 'borderLeft',
+            hidden: false
+          },
+          {
+            name: 'borderTop',
+            hidden: false
+          },
+          {
+            name: 'borderRight',
+            hidden: false
+          },
+          {
+            name: 'borderBottom',
+            hidden: false
+          },
+          {
+            name: 'fourBorder',
+            hidden: false
+          },
+          {
+            name: 'borderWidth',
+            hidden: false
+          },
+          {
+            name: 'borderColor',
+            hidden: false
+          },
+         
+          {
+            name: 'contentPaddingLeft',
+            hidden: false
+          },
+          {
+            name: 'contentPaddingTop',
+            hidden: false
+          },
+          {
+            name: 'contentPaddingRight',
+            hidden: false
+          },
+          {
+            name: 'contentPaddingBottom',
+            hidden: false
+          },
+        ]
+      },
+      {
         name: '高级',
         options: [{
           name: 'pageBreak',

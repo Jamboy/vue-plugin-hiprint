@@ -13,7 +13,7 @@
 
 function _instanceof(left, right) {
   if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) {
-    return !!right[Symbol.hasInstance](left);
+    return !!right[Symbol.hasInstance](left)
   } else {
     return left instanceof right;
   }
@@ -544,8 +544,12 @@ var hiprint = function (t) {
 
     return t.prototype.setDefault = function (t) {
       this.defaultOptions = t, this.initSize();
+      console.log('this.defaultOptions: ', this.defaultOptions);
       Object.keys(this.defaultOptions).forEach(key => {
+        if(key!=='title'){
         this[key] = this[key] || this.defaultOptions[key];
+        console.log('this[key]: ', key + this[key]);
+      }
       })
     }, t.prototype.initSize = function () {
       this.width || this.setWidth(this.defaultOptions.width), this.height || this.setHeight(this.defaultOptions.height);
@@ -4157,17 +4161,36 @@ var hiprint = function (t) {
         this.target.remove();
       }, t;
     }(),
+    GFB = function () {
+      function t() {
+        this.name = "fourBorder";
+      }
+      return t.prototype.css = function (t, e) {
+        if (t && t.length) {
+          if (e) return t.css("border", e), "padding:4pt" ;
+          t[0].style.border = "", t[0].style.border = "";
+        }
+        return null;
+      }, t.prototype.createTarget = function () {
+        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('四周边框')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n            <option value="" >${i18n.__('否')}</option>\n            <option value="solid" >${i18n.__('实线')}</option>\n            <option value="dotted" >${i18n.__('虚线')}</option>\n        </select>\n        </div>\n    </div>`), this.target;
+      }, t.prototype.getValue = function () {
+        var t = this.target.find("select").val();
+        if (t) return t;
+      }, t.prototype.setValue = function (t) {
+        this.target.find("select").val(t);
+      }, t.prototype.destroy = function () {
+        this.target.remove();
+      }, t;
+    }(), 
     G = function () {
       function t() {
         this.name = "borderTop";
       }
-
       return t.prototype.css = function (t, e) {
         if (t && t.length) {
           if (e) return t.css("border-top-style", e), "border-top:1px";
           t[0].style.borderTopStyle = "", t[0].style.borderTopWidth = "";
         }
-
         return null;
       }, t.prototype.createTarget = function () {
         return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('上边框')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n            <option value="" >${i18n.__('否')}</option>\n            <option value="solid" >${i18n.__('实线')}</option>\n            <option value="dotted" >${i18n.__('虚线')}</option>\n        </select>\n        </div>\n    </div>`), this.target;
@@ -4253,7 +4276,6 @@ var hiprint = function (t) {
       function t() {
         this.name = "contentPaddingLeft";
       }
-
       return t.prototype.css = function (t, e) {
         var n = t.find(".hiprint-printElement-content");
 
@@ -4863,8 +4885,8 @@ var hiprint = function (t) {
       }, t.prototype.getValue = function () {
         let opt = {
           layoutType: this.layoutType.find("select").val() || 'column',
-          layoutRowGap:parseInt(this.layoutRowGap.find('input').val() || 0),
-          layoutColumnGap:parseInt(this.layoutColumnGap.find('input').val() || 0),
+          layoutRowGap:parseFloat(this.layoutRowGap.find('input').val() || 0),
+          layoutColumnGap:parseFloat(this.layoutColumnGap.find('input').val() || 0),
         }
         let options = Object.assign({}, this.options, opt);
         return options;
@@ -5376,7 +5398,7 @@ var hiprint = function (t) {
       t.init(), t.printElementOptionItems[e.name] = e;
     }, t.getItem = function (e) {
       return t.init(), t.printElementOptionItems[e];
-    }, t._printElementOptionItems = [new fontFamily(), new r(), new a(), new p(), new i(), new s(), new l(), new pt(), new u(), new d(), new c(), new h(), new f(), new g(), new m(), new d2(), new c2(), new v(), new y(), new b(), new E(), new qrCodeLevel(), new T(), new P(), new _(), new w(), new x(), new coordinate(), new widthHeight(), new C(), new imageFit(), new O(), new H(), new D(), new paperNumberContinue(), new watermarkOptions(), new I(), new R(), new pageBreak(), new M(), new M2(), new S(), new B(), new F(), new L(), new A(), new z(), new k(), new st(), new N(), new V(), new W(), new j(), new U(), new borderRadius(), new zIndex(), new K(), new G(), new q(), new X(), new Y(), new Q(), new J(), new Z(), new tt(), new et(), new nt(), new it(), new ot(),new textWrap(), new at(), new lt(), new panelLayoutOptions(), new ut(), new ith(), new dt(), new ct(), new ht(), new ft(), new gt(), new mt(), new rowcolumns(), new rowsColumnsMergeClean(), new groupSequenceContinue(), new groupFieldsFormatter(), new groupFormatter(), new groupFooterFormatter(), new vt(), new yt(), new bt(), new Tt(), new Et(), new Pt(), new stylerHeader(), new renderFormatter(), new _t(), new wt(), new maxRows(), new xt(), new tableColumnH(), new tableE(), new tableQRCodeLevel(), new tablept(), new tableSummaryTitle(), new tableSummaryText(), new tableSummaryColspan(), new tableSummary(), new tableSummaryAlign(), new tableSummaryNumFormat(), new tableSummaryFormatter(),new showCodeTitle(), new upperCase(), new barcodeType(), new qrcodeType(), new barColor(), new barTextMode(), new barWidth(), new barAutoWidth()], t;
+    }, t._printElementOptionItems = [new fontFamily(), new r(), new a(), new p(), new i(), new s(), new l(), new pt(), new u(), new d(), new c(), new h(), new f(), new g(), new m(), new d2(), new c2(), new v(), new y(), new b(), new E(), new qrCodeLevel(), new T(), new P(), new _(), new w(), new x(), new coordinate(), new widthHeight(), new C(), new imageFit(), new O(), new H(), new D(), new paperNumberContinue(), new watermarkOptions(), new I(), new R(), new pageBreak(), new M(), new M2(), new S(), new B(), new F(), new L(), new A(), new z(), new k(), new st(), new N(), new V(), new W(), new j(), new U(), new borderRadius(), new zIndex(), new K(), new G(),new GFB(), new q(), new X(), new Y(), new Q(), new J(), new Z(), new tt(), new et(), new nt(), new it(), new ot(),new textWrap(), new at(), new lt(), new panelLayoutOptions(), new ut(), new ith(), new dt(), new ct(), new ht(), new ft(), new gt(), new mt(), new rowcolumns(), new rowsColumnsMergeClean(), new groupSequenceContinue(), new groupFieldsFormatter(), new groupFormatter(), new groupFooterFormatter(), new vt(), new yt(), new bt(), new Tt(), new Et(), new Pt(), new stylerHeader(), new renderFormatter(), new _t(), new wt(), new maxRows(), new xt(), new tableColumnH(), new tableE(), new tableQRCodeLevel(), new tablept(), new tableSummaryTitle(), new tableSummaryText(), new tableSummaryColspan(), new tableSummary(), new tableSummaryAlign(), new tableSummaryNumFormat(), new tableSummaryFormatter(),new showCodeTitle(), new upperCase(), new barcodeType(), new qrcodeType(), new barColor(), new barTextMode(), new barWidth(), new barAutoWidth()], t;
   }();
 }, function (t, e, n) {
   "use strict";
@@ -9316,7 +9338,7 @@ var hiprint = function (t) {
         t.prototype.onResize.call(this, e, n, i, o, r);
         this.initBarcode(this.designTarget, this.getTitle(), this.getData())
       }, e.prototype.getTitle = function () {
-        return this.options.title || this.printElementType.title;
+        return this.options.title;
       }, e.prototype.getData = function (t) {
         var e = void 0;
         var f = this.getField();
@@ -9365,7 +9387,7 @@ var hiprint = function (t) {
       e.prototype.getReizeableShowPoints = function () {
         return ['s', 'e', 'se', 'r'];
       }, e.prototype.createTarget = function (title, data) {
-        var designTarget = $('<div class="hiprint-printElement hiprint-printElement-barcode" style="position: absolute;"><div class="hiprint-printElement-barcode-content" style="height:100%;width:100%;display:flex;flex-direction:column"></div></div>');
+        var designTarget = $('<div class="hiprint-printElement hiprint-printElement-barcode" style="position: absolute;"><div class="hiprint-printElement-barcode-content hiprint-printElement-content" style="height:100%;width:100%;display:flex;flex-direction:column"></div></div>');
         this.initBarcode(designTarget, title, data);
         return designTarget;
       }, e.prototype.getHtml = function (t, e, n) {
@@ -9388,7 +9410,7 @@ var hiprint = function (t) {
         t.prototype.onResize.call(this, e, n, i, o, r);
         this.initQrcode(this.designTarget, this.getTitle(), this.getData())
       }, e.prototype.getTitle = function () {
-        return this.options.title || this.printElementType.title;
+        return this.options.title;
       }, e.prototype.getData = function (t) {
         var e = void 0;
         var f = this.getField();
@@ -9434,7 +9456,8 @@ var hiprint = function (t) {
       e.prototype.getReizeableShowPoints = function () {
         return ['s', 'e', 'se', 'r'];
       }, e.prototype.createTarget = function (title, data) {
-        var designTarget = $('<div class="hiprint-printElement hiprint-printElement-qrcode" style="position: absolute;"><div class="hiprint-printElement-qrcode-content" style="height:100%;width:100%;display:flex;flex-direction:column"></div></div>');
+       
+        var designTarget = $('<div class="hiprint-printElement hiprint-printElement-qrcode" style="position: absolute;"><div class="hiprint-printElement-qrcode-content hiprint-printElement-content " style="height:100%;width:100%;display:flex;flex-direction:column"></div></div>');
         this.initQrcode(designTarget, title, data);
         return designTarget;
       }, e.prototype.getHtml = function (t, e, n) {
@@ -9639,8 +9662,7 @@ var hiprint = function (t) {
         return t || "_default";
       }, t;
     }(),
-    ot = function () {
-      return function (t, e) {
+    ot = function () {      return function (t, e) {
         var n = this;
         this.name = t, this.printElementTypes = [], e.forEach(function (t) {
           n.printElementTypes.push(nt.createPrintElementType(t));
