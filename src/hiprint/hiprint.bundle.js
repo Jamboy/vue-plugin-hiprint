@@ -9444,8 +9444,8 @@ var hiprint = function (t) {
             const titleText = title ? title + ( text ? ':' : '' ) : '';
             const textAlign = this.options.textAlign || 'center';
             // 支持type为qrcode的textAlign属性
-            const textStyle = textAlign === 'justify' ? 'text-align-last: justify;text-justify: distribute-all-lines;' : `text-align: ${ textAlign };`
-            content.append($(`<div class="hiprint-printElement-qrcode-content-title" style="${ textStyle }">${ titleText }${ text }</div>`))
+            const textStyle = textAlign === 'justify' ? 'text-align-last:   justify;text-justify: distribute-all-lines;' : `text-align: ${ textAlign };`
+            content.append($(`<div class="hiprint-printElement-qrcode-content-title" style="${ textStyle }">${ text }</div>`))
           }
         } catch (error) {
           console.error(error)
