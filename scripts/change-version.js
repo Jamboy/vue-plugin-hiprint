@@ -29,7 +29,7 @@ let pkgStr = JSON.stringify(pkg, null, 2);
 fs.writeFileSync(pkgPath, pkgStr);
 let cmd = `git add package.json && git commit -m 'pub-beta ${version}' && git tag ${version}`;
 if (isNewVersion) {
-  cmd = `git add package.json && git commit -m 'pub ${version} && git tag ${version}'`;
+  cmd = `git add package.json && git commit -m 'pub ${version}' && git tag ${version}`;
 }
 exec(cmd);
 console.log('exec cmd ==> ', cmd);

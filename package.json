@@ -1,7 +1,7 @@
 {
   "name": "vue-plugin-hiprint-jam",
   "description": "修改vue-plugin-hiprint部分源码by0.0.58-fix",
-  "version": "1.0.16",
+  "version": "1.0.15",
   "author": "CcSimple",
   "license": "MIT",
   "main": "dist/vue-plugin-hiprint-jam.js",
