@@ -1,5 +1,6 @@
-/* eslint-disable */
+/* eslint-disable */ 
 /**
+ * 自己
  * jQuery Hiprint 2.5.4
  *
  * Copyright (c) 2016-2021 www.hinnn.com. All rights reserved.
@@ -4886,7 +4887,7 @@ var hiprint = function (t) {
       }, t.prototype.getValue = function () {
         let opt = {
           layoutType: this.layoutType.find("select").val() || 'column',
-          layoutRowGap:parseFloat(this.layoutRowGap.find('input').val() || 0),
+          layoutRowGap:parseFloat(this.layoutRowGap.find('input').val() || 0),// 水平垂直间距允许小数
           layoutColumnGap:parseFloat(this.layoutColumnGap.find('input').val() || 0),
         }
         let options = Object.assign({}, this.options, opt);
@@ -9411,7 +9412,7 @@ var hiprint = function (t) {
         t.prototype.onResize.call(this, e, n, i, o, r);
         this.initQrcode(this.designTarget, this.getTitle(), this.getData())
       }, e.prototype.getTitle = function () {
-        return this.options.title;
+        return this.options.title; //去掉了标题获取字段的title
       }, e.prototype.getData = function (t) {
         var e = void 0;
         var f = this.getField();
@@ -9447,6 +9448,7 @@ var hiprint = function (t) {
             // 支持type为qrcode的textAlign属性
             const textStyle = textAlign === 'justify' ? 'text-align-last:   justify;text-justify: distribute-all-lines;' : `text-align: ${ textAlign };`
             content.append($(`<div class="hiprint-printElement-qrcode-content-title" style="${ textStyle }">${ text }</div>`))
+            //二维码不显示标题
           }
         } catch (error) {
           console.error(error)
@@ -9663,7 +9665,8 @@ var hiprint = function (t) {
         return t || "_default";
       }, t;
     }(),
-    ot = function () {      return function (t, e) {
+    ot = function () {      
+      return function (t, e) {
         var n = this;
         this.name = t, this.printElementTypes = [], e.forEach(function (t) {
           n.printElementTypes.push(nt.createPrintElementType(t));
