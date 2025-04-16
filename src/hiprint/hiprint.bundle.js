@@ -3394,7 +3394,13 @@ var hiprint = function (t) {
           this.isSelect = !1;
           this.target = $(`<div class="hiprint-option-item hiprint-option-item-row">\n            <div class="hiprint-option-item-label">\n            ${i18n.__('字段名')}\n            </div>\n            <div class="hiprint-option-item-field"  hiprint-field="${this.name}">\n            <input type="text" placeholder="${i18n.__('请输入字段名')}" class="auto-submit">\n            </div>\n        </div>`);
         }
-
+        if(this.isSelect){
+          // 字段名更改时同步修改标题
+          this.target.find('select').on('change', function() {
+            const text = $(this).find("option:selected").text();
+            $('.hiprint-option-item-field[hiprint-field="title"] textarea').val(text);
+          });
+        }
         return this.target;
       }, t.prototype.getValue = function () {
         return (this.isSelect ? this.target.find("select").val() : this.target.find("input").val()) || void 0;
