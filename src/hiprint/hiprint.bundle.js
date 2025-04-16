@@ -3395,10 +3395,17 @@ var hiprint = function (t) {
           this.target = $(`<div class="hiprint-option-item hiprint-option-item-row">\n            <div class="hiprint-option-item-label">\n            ${i18n.__('字段名')}\n            </div>\n            <div class="hiprint-option-item-field"  hiprint-field="${this.name}">\n            <input type="text" placeholder="${i18n.__('请输入字段名')}" class="auto-submit">\n            </div>\n        </div>`);
         }
         if(this.isSelect){
-          // 字段名更改时同步修改标题
+          // 字段名更改时同步修改标题,格式化函数
           this.target.find('select').on('change', function() {
-            const text = $(this).find("option:selected").text();
-            $('.hiprint-option-item-field[hiprint-field="title"] textarea').val(text);
+            const v = this.value;
+            const fields = t.getFields();
+            console.log("fields",fields);
+            const fieldItem = fields.find(i=>i.field === v)
+            console.log('fieldItem: ', fieldItem);
+            const text = fieldItem.text
+            const fmt = fieldItem?.formatter || ''
+            $('.hiprint-option-item-field[hiprint-field="title"] textarea').val(text);   
+            $('.hiprint-option-item-field[hiprint-field="formatter"] textarea').val(fmt);
           });
         }
         return this.target;

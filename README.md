@@ -48,3 +48,9 @@
 # 1.0.17-beta1
 
 1. 同步 0.60
+
+# 1.0.18
+
+1. 为打印组件属性添加 hiprint-field attribute 方便查看属性字段名
+2. type 为 text 类型时传入了 fields 可在选择字段名时同步更新标题
+3. type 为 text 类型时传入了 fields 且传入了 formatter 可在选择字段名时同步更新 formatter
