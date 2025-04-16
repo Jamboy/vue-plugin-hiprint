@@ -3399,10 +3399,8 @@ var hiprint = function (t) {
           this.target.find('select').on('change', function() {
             const v = this.value;
             const fields = t.getFields();
-            console.log("fields",fields);
             const fieldItem = fields.find(i=>i.field === v)
-            console.log('fieldItem: ', fieldItem);
-            const text = fieldItem.text
+            const text = fieldItem?.text || '请选择字段'
             const fmt = fieldItem?.formatter || ''
             $('.hiprint-option-item-field[hiprint-field="title"] textarea').val(text);   
             $('.hiprint-option-item-field[hiprint-field="formatter"] textarea').val(fmt);
