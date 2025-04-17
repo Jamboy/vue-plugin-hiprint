@@ -1545,16 +1545,17 @@ var hiprint = function (t) {
         var n = `<select class="auto-submit" style="width:100%">\n                <option value="" disabled>${i18n.__('请选择字段')}</option>`;
         e.forEach(function (t, e) {
           if (t.field == i.field) {
-            n += ' <option value="' + (t.field || "") + '" selected >' + (t.text || "") + "</option>";
+            n += ' <option value="' + (t.field || "") + '" selected >' + ((t.text + " (" +t.field+")") || "") + "</option>";
           } else {
-            n += ' <option value="' + (t.field || "") + '" >' + (t.text || "") + "</option>";
+            n += ' <option value="' + (t.field || "") + '" >' +  ((t.text + " (" +t.field+")") || "") + "</option>";
           }
         }), n += " </select>";
         this.target = $(n), i.getTarget().append(this.target), this.target.focus();
       }, t.prototype.getValue = function () {
         var val = this.target.val()
         var text = this.target.find('option[value="' + val + '"]').text()
-        return text + '#' + val;
+        const oriText = text && text.split(`(${val})`)[0].trim();
+        return oriText + '#' + val;
       }, t.prototype.setValue = function (t) {
         t && (this.target.find('option[value="' + t + '"]').length || this.target.find("select").prepend('<option value="' + t + '" >' + t + "</option>"));
         this.target.find("select").val(t);
@@ -1629,7 +1630,7 @@ var hiprint = function (t) {
           if (this.tableOptions.options.isEnableEditField || this.tableOptions.options.fields) {
             var n = e.split("#");
             t.title = this.title = n[0], n.length > 0 && (t.columnId = t.field = this.field = n[1]);
-            t.id && t.target.attr("id", t.id), t.columnId && t.target.attr("column-id", t.columnId);
+            t.id && t.target.attr("id", t.id), t.columnId && t.target.attr("column-id", t.columnId),this.field && t.target.attr("title", this.field);
             hinnn.event.trigger("hiprintTemplateDataChanged_" + this.tableOptions.options.templateId, "调整表格列字段");
           } else t.title = this.title = e;
         } else this.tableOptions.options.isEnableEditField ? (t.title = this.title = "", t.field = this.field = "") : t.title = this.title = "";
@@ -3388,7 +3389,7 @@ var hiprint = function (t) {
           this.isSelect = !0;
           var n = `<div class="hiprint-option-item hiprint-option-item-row">\n            <div class="hiprint-option-item-label">\n            ${i18n.__('字段名')}\n            </div>\n            <div class="hiprint-option-item-field"  hiprint-field="${this.name}">\n            <select class="auto-submit">\n                <option value="" >${i18n.__('请选择字段')}</option>`;
           e.forEach(function (t, e) {
-            n += ' <option value="' + (t.field || "") + '" >' + (t.text || "") + "</option>";
+            n += ' <option value="' + (t.field || "") + '" >' + ((t.text + " (" +t.field+")") || "") + "</option>";
           }), n += " </select>\n            </div>\n        </div>", this.target = $(n);
         } else {
           this.isSelect = !1;
