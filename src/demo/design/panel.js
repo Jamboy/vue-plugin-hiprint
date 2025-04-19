@@ -174,7 +174,8 @@ export default {
             "fields": [
               {
                 "text": "id",
-                "field": "id"
+                "field": "id",
+                "formatter":"function(value,row,index,options){ return '1111'}"
               },
               {
                 "text": "姓名",
@@ -395,7 +396,9 @@ export default {
               },
               {
                 "text": "姓名",
-                "field": "name"
+                "field": "name",
+                'tableTextType':'qrcode',
+                "formatter2":"function (value, row, index, options) {const formatter = ({ cellValue }) => {return cellValue == '1' ? '测量' : '判定';};return formatter({ cellValue:value, row:row });}"
               },
               {
                 "text": "性别",
@@ -425,7 +428,10 @@ export default {
                   "rowspan": 1,
                   "colspan": 1,
                   "align": "center",
-                  "tableSummary": "count"
+                  "tableSummary": "count",
+                  'tableTextType':'qrcode',
+                  "formatter2":"function (value, row, index, options) {const formatter = ({ cellValue }) => {return cellValue == '1' ? '测量' : '判定';};return formatter({ cellValue:value, row:row });}"
+
                 },
                 {
                   "width": 102.30000000000001,

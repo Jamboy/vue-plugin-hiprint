@@ -54,3 +54,9 @@
 1. 为打印组件属性添加 hiprint-field attribute 方便查看属性字段名
 2. type 为 text 类型时传入了 fields 可在选择字段名时同步更新标题
 3. type 为 text 类型时传入了 fields 且传入了 formatter 可在选择字段名时同步更新 formatter
+
+# 1.0.19
+
+1. 在表格字段选择下拉框中显示字段名
+2. type 为 table 类型时传入了 fields 且传入了 formatter2 可在选择字段名时同步更新 formatter2,tableTextType:''align:'center',halign:'center'
+   并同时为单元格左右对齐，表格头单元格左右对齐设置默认居中
