@@ -1624,13 +1624,28 @@ var hiprint = function (t) {
           }), this.tableOptions.editingCell && this.tableOptions.editingCell.id != t.id && this.tableOptions.editingCell.innerElement.endEdit(this.tableOptions.editingCell), this.tableOptions.editingCell = t;
         }
       }, t.prototype.endEdit = function (t) {
-        t.isEditing = 0
+        t.isEditing = 0    
         var e = this.editor.getValue();
         if (e) {
           if (this.tableOptions.options.isEnableEditField || this.tableOptions.options.fields) {
+            const oldField = t.field
             var n = e.split("#");
             t.title = this.title = n[0], n.length > 0 && (t.columnId = t.field = this.field = n[1]);
-            t.id && t.target.attr("id", t.id), t.columnId && t.target.attr("column-id", t.columnId),this.field && t.target.attr("title", this.field);
+            t.id && t.target.attr("id", t.id), t.columnId && t.target.attr("column-id", t.columnId),this.field && t.target.attr("title", this.field); 
+            // 同步更新表格单元格格式化函数from fields formmater2 tableTextType
+            const sdField = this.tableOptions.options.fields.find(i=>i.field===this.field)
+            if(oldField !== this.field &&  sdField){
+              const syncUpdateProps = {
+                formatter2: undefined,
+                tableTextType:'',
+                align:'center',
+                halign:'center'
+              }
+              Object.keys(syncUpdateProps).forEach(k=>{
+                  t[k] = sdField[k] || syncUpdateProps[k]                
+              })}
+              const okBtn = $('.prop-tabs .hiprint-option-item-settingBtn.hiprint-option-item-submitBtn')
+              okBtn.click()
             hinnn.event.trigger("hiprintTemplateDataChanged_" + this.tableOptions.options.templateId, "调整表格列字段");
           } else t.title = this.title = e;
         } else this.tableOptions.options.isEnableEditField ? (t.title = this.title = "", t.field = this.field = "") : t.title = this.title = "";
